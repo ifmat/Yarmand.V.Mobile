@@ -1,87 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="24dp">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!-- Background gradient (inline) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clipToPadding="false">
 
-        <TableRow
+        <View
+            android:id="@+id/gradientView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_gradient_inline" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="toggle" />
+    <!-- Main content -->
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="18dp"
+        android:background="@drawable/card_glass_inline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.45">
 
-            <ToggleButton
-                android:id="@+id/toggleButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ToggleButton" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="chip" />
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip"
-                android:text="کالای دیجیتال"
-                android:checkable="true"
-                android:checked="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow> <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="chip" />
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip"
-                android:text="کالای دیجیتال"
-                android:checkable="true"
-                android:checked="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Switch"
-                tools:ignore="DuplicateIds" />
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Switch"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
-        </TableRow>
-
-        <Button
-            android:id="@+id/btnGoSecond"
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="go to 2page" />
+            android:text="خوش امدید"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
 
-    </TableLayout>
-</LinearLayout>
+
+        <!-- Buttons -->
+        <Button
+            android:id="@+id/website"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="نمایش سایت"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_primary_inline"
+            android:stateListAnimator="@null"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/call"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="تماس"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#0B1B2A"
+            android:background="@drawable/btn_secondary_inline"
+            android:stateListAnimator="@null"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/go"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="صفحه بعد"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#0B1B2A"
+            android:background="@drawable/btn_accent_inline"
+            android:stateListAnimator="@null"/>
+
+    </LinearLayout>
+
+    <!-- NOTE:
+         Android XML نمی‌تونه Gradient/shape رو کاملاً داخل همین فایل layout بدون drawable بسازه.
+         پس در پایین، این drawable ها رو هم باید داشته باشی.
+         (اگر خواستی واقعاً 100% یک فایل بشه، راه جایگزینش Theme/Style در colors.xml و theme است.)
+    -->
+</androidx.constraintlayout.widget.ConstraintLayout>
